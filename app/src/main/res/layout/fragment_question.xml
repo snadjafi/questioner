@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clickable="true"
+    android:orientation="vertical">
+
+    <com.shervin.questioner.ui.widget.TextView
+        android:id="@+id/title"
+        style="@style/title"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:minHeight="48dp"/>
+
+    <com.shervin.questioner.ui.widget.Button
+        android:id="@+id/submit"
+        style="@style/button"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_alignParentBottom="true"
+        android:gravity="center"
+        android:text="@string/submit_answer"
+        android:background="@drawable/selector_button"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_above="@id/submit"
+        android:layout_below="@id/title"
+        android:orientation="vertical"
+        android:weightSum="2">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="2"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <com.shervin.questioner.ui.widget.AnswerItem
+                android:id="@+id/first"
+                style="@style/itemRow"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"/>
+
+            <com.shervin.questioner.ui.widget.AnswerItem
+                android:id="@+id/second"
+                style="@style/itemRow"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="2"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <com.shervin.questioner.ui.widget.AnswerItem
+                android:id="@+id/third"
+                style="@style/itemRow"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"/>
+
+            <com.shervin.questioner.ui.widget.AnswerItem
+                android:id="@+id/fourth"
+                style="@style/itemRow"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>

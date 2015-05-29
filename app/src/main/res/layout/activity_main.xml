@@ -1,0 +1,29 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             xmlns:tools="http://schemas.android.com/tools"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             android:orientation="vertical"
+             tools:context=".MainActivity">
+
+    <include layout="@layout/toolbar"/>
+
+    <com.shervin.questioner.ui.widget.Button
+        android:id="@+id/start"
+        style="@style/button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:background="@drawable/selector_button"
+        android:gravity="center"
+        android:padding="8dp"
+        android:text="@string/start_quiz"/>
+
+    <com.shervin.questioner.ui.widget.NoSwipeViewPager
+        android:id="@+id/viewpager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="?attr/actionBarSize"/>
+
+</FrameLayout>
