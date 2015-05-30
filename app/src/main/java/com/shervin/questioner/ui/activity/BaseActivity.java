@@ -13,7 +13,7 @@ import com.shervin.questioner.util.Typefaces;
 
 import timber.log.Timber;
 
-public class BaseActivity extends AppCompatActivity {
+public abstract class BaseActivity extends AppCompatActivity {
 
     protected void setTitle(String title) {
         ActionBar ab = getSupportActionBar();

@@ -25,7 +25,6 @@ import com.shervin.questioner.model.Question;
 import com.shervin.questioner.ui.fragment.QuestionFragment;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import butterknife.ButterKnife;
@@ -53,7 +52,6 @@ public class MainActivity extends BaseActivity implements QuestionFragment.Answe
     @OnClick(R.id.start) public void onClick(View view) {
         view.setVisibility(View.GONE);
         mQuestions = QuestionAnswerManager.getQuiz();
-        Collections.shuffle(mQuestions);
         mViewPager.setOffscreenPageLimit(mQuestions.size());
         addQuestion(0);
     }

@@ -15,8 +15,8 @@ import com.shervin.questioner.model.Answer;
 import com.shervin.questioner.model.Question;
 import com.shervin.questioner.ui.widget.AnswerItem;
 
-import java.util.Collections;
 import java.util.List;
+import java.util.Random;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
@@ -27,6 +27,7 @@ public class QuestionFragment extends BaseFragment implements AnswerItem.OnSelec
 
     private static final String QUESTION = "question";
     private static final String INDEX = "index";
+    private static final Random RANDOM = new Random();
 
     @InjectView(R.id.title) TextView mTitle;
     @InjectView(R.id.submit) Button mSubmit;
@@ -34,7 +35,7 @@ public class QuestionFragment extends BaseFragment implements AnswerItem.OnSelec
 
     private Question mQuestion;
     private AnswerInterface mCoordinator;
-    private String mCorrectAnswer;
+    private int mCorrectAnswer;
 
     public static QuestionFragment newInstance(Question question, int index) {
         QuestionFragment fragment = new QuestionFragment();
@@ -63,7 +64,7 @@ public class QuestionFragment extends BaseFragment implements AnswerItem.OnSelec
     @Override public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mQuestion = getArguments().getParcelable(QUESTION);
-
+        mCorrectAnswer = RANDOM.nextInt(4);
         setDisplayHomeAsUpEnabled(true);
     }
 
@@ -103,9 +104,8 @@ public class QuestionFragment extends BaseFragment implements AnswerItem.OnSelec
     }
 
     @SuppressWarnings("UnusedDeclaration")
-    @OnClick(R.id.submit) public void onClick() {
-        String imageUrl = getSelectedAnswer();
-        Answer answer = new Answer(mQuestion, mCorrectAnswer.equals(imageUrl));
+    @OnClick(R.id.submit) public void onClick(View view) {
+        Answer answer = new Answer(mQuestion, mCorrectAnswer == getSelectedAnswerIndex());
         if (hasAnswer()) {
             mCoordinator.onAnswer(answer, getArguments().getInt(INDEX));
         } else {
@@ -123,21 +123,19 @@ public class QuestionFragment extends BaseFragment implements AnswerItem.OnSelec
         return false;
     }
 
-    private String getSelectedAnswer() {
-        for (AnswerItem item : mAnswerItems) {
+    private int getSelectedAnswerIndex() {
+        for (int i = 0; i < mAnswerItems.size(); i++) {
+            AnswerItem item = mAnswerItems.get(i);
             if (item.isChecked()) {
-                return item.getImageUrl();
+                return i;
             }
         }
 
-        return "";
+        return 0;
     }
 
     private void setupImages() {
         List<String> imageUrls = mQuestion.getImageUrl();
-        mCorrectAnswer = imageUrls.get(0);
-        Collections.shuffle(imageUrls);
-
         for (int i = 0; i < 4; i++) {
             AnswerItem item = mAnswerItems.get(i);
             item.bind(imageUrls.get(i));
